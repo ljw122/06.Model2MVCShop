@@ -13,11 +13,11 @@ import com.model2.mvc.service.domain.Reply;
 import com.model2.mvc.service.product.ProductDao;
 import com.model2.mvc.service.product.ProductService;
 
-@Service("productServiceImpl")
+@Service("productService")
 public class ProductServiceImpl implements ProductService {
 	/*Field*/
 	@Autowired
-	@Qualifier("productDaoImpl")
+	@Qualifier("productDao")
 	private ProductDao productDao;
 	
 	/*Constructor*/

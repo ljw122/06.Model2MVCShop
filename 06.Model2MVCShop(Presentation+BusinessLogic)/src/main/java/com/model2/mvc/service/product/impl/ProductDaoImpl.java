@@ -14,7 +14,7 @@ import com.model2.mvc.service.domain.Product;
 import com.model2.mvc.service.domain.Reply;
 import com.model2.mvc.service.product.ProductDao;
 
-@Repository("productDaoImpl")
+@Repository("productDao")
 public class ProductDaoImpl implements ProductDao{
 	/*Field*/
 	@Autowired
