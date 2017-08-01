@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="UserMapper">
+	
+	<resultMap id="userSelectMap" type="com.model2.mvc.service.domain.User">
+		<result property="userId" column="user_id" jdbcType="VARCHAR"/>
+		<result property="userName" column="user_name" jdbcType="VARCHAR"/>
+		<result property="password" column="password" jdbcType="VARCHAR"/>
+		<result property="role" column="role" jdbcType="VARCHAR"/>
+		<result property="ssn" column="ssn" jdbcType="VARCHAR"/>
+		<result property="phone" column="cell_phone" jdbcType="VARCHAR"/>
+		<result property="addr" column="addr" jdbcType="VARCHAR"/>
+		<result property="email" column="email" jdbcType="VARCHAR"/>
+		<result property="regDate" column="reg_date" jdbcType="DATE"/>
+	</resultMap>
+	
+	<insert id="addUser" parameterType="com.model2.mvc.service.domain.User">
+		INSERT
+		INTO users 
+		VALUES(
+			#{userId},
+			#{userName},
+			#{password},
+			user,
+			#{ssn},
+			#{phone:VARCHAR},
+			#{addr:VARCHAR},
+			#{email:VARCHAR},
+			SYSDATE
+		)
+	</insert>
+	
+	<select id="getUser" parameterType="java.lang.String" resultMap="userSelectMap">
+		SELECT
+		user_id, user_name, password, role, cell_phone, addr, email, reg_date
+		FROM users
+		WHERE user_id=#{userId}
+	</select>
+	
+	<update id="updateUser" parameterType="com.model2.mvc.service.domain.User">
+		UPDATE users
+		<set>
+			user_name=#{userName:VARCHAR}, cell_phone=#{phone:VARCHAR}, addr=#{addr:VARCHAR}, email=#{email:VARCHAR}
+		</set>
+		WHERE user_id=#{userId}
+	</update>
+		
+	<sql id="userList">
+		SELECT
+		user_id, user_name, email
+		FROM users
+		<where>
+			<if test="searchCondition != null and searchCondition != ''">
+				<if test="searchCondition == 0 and searchKeyword != ''">
+					user_id LIKE '%${searchKeyword}%'
+				</if>
+				<if test="searchCondition == 1 and searchKeyword != ''">
+					user_name LIKE '%${searchKeyword}%'
+				</if>
+			</if>
+		</where>
+		ORDER BY user_id
+	</sql>
+
+
+	<select id="getUserList" parameterType="com.model2.mvc.common.Search" resultMap="userSelectMap">
+		SELECT *
+		FROM ( SELECT inner_table.*, ROWNUM row_seq
+		       FROM ( <include refid="userList"/> ) inner_table
+		       WHERE ROWNUM <![CDATA[<]]>=${currentPage}*${pageSize} )
+		WHERE row_seq BETWEEN ${(currentPage-1)*pageSize+1} AND ${currentPage*pageSize}
+	</select>
+	
+	<select id="getTotalCount" parameterType="com.model2.mvc.common.Search" resultType="int">
+		SELECT
+		COUNT(*)
+		FROM ( <include refid="userList"/> )
+	</select>
+	
+</mapper>
