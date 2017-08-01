@@ -11,11 +11,11 @@ import com.model2.mvc.service.domain.User;
 import com.model2.mvc.service.user.UserDao;
 import com.model2.mvc.service.user.UserService;
 
-@Service("userServiceImpl")
+@Service("userService")
 public class UserServiceImpl implements UserService{
 	
 	@Autowired
-	@Qualifier("userDaoImpl")
+	@Qualifier("userDao")
 	private UserDao userDao;
 	
 	
