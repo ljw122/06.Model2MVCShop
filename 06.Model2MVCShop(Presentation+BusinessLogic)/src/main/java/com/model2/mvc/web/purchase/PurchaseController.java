@@ -64,8 +64,10 @@ public class PurchaseController {
 	}
 	
 	@RequestMapping("getPurchase.do")
-	public String getPurchase(	@ModelAttribute("purchase") Purchase purchase)throws Exception{
+	public String getPurchase(	@ModelAttribute("purchase") Purchase purchase,
+								Model model	)throws Exception{
 		purchase = purchaseService.getPurchase(purchase);
+		model.addAttribute("purchase", purchase);
 		
 		return "forward:purchase/getPurchase.jsp";
 	}
@@ -84,7 +86,7 @@ public class PurchaseController {
 		
 		purchaseService.updatePurchase(purchase);
 		
-		return "forward:getPurchase.do?tranNo="+purchase.getTranNo();
+		return "forward:getPurchase.do";
 	}
 	
 	@RequestMapping("listPurchase.do")
@@ -124,7 +126,7 @@ public class PurchaseController {
 		if(menu.equals("manage")){
 			return "forward:listSale.do";
 		}else{
-			return "forward:listPurchase.do?userId="+user.getUserId();
+			return "forward:listPurchase.do";
 		}
 	}
 	
