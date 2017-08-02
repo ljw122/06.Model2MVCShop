@@ -93,7 +93,7 @@ public class ProductController {
 	public ModelAndView updateProduct(@ModelAttribute("product") Product product) throws Exception{
 		productService.updateProduct(product);
 		
-		return new ModelAndView("forward:product/getProduct.jsp?menu=manage&prodNo="+product.getProdNo(), "product", product);
+		return new ModelAndView("forward:product/getProduct.jsp?menu=manage&prodNo="+product.getProdNo());
 	}
 	
 	@RequestMapping("updateProductView.do")
@@ -150,7 +150,7 @@ public class ProductController {
 		
 		productService.addProductComment(product);
 		
-		return new ModelAndView("getProduct.do?prodNo="+product.getProdNo()+"&menu=search");
+		return new ModelAndView("getProduct.do?menu=search");
 	}
 	
 }
