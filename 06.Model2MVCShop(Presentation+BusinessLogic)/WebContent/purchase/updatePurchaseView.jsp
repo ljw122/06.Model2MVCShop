@@ -39,7 +39,7 @@
 	</tr>
 </table>
 
-<input type="hidden" name="buyer" value="${purchase.buyer.userId}"/>
+<input type="hidden" name="userId" value="${purchase.buyer.userId}"/>
 
 <table width="600" border="0" cellspacing="0" cellpadding="0"	align="center" style="margin-top: 13px;">
 	<tr>
@@ -48,7 +48,7 @@
 	<tr>
 		<td width="104" class="ct_write">구매자아이디</td>
 		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">user06</td>
+		<td class="ct_write01">${purchase.buyer.userId }</td>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>

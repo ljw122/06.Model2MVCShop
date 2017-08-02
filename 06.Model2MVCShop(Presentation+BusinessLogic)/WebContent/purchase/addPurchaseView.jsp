@@ -50,6 +50,7 @@ function fncAddPurchase() {
 <input type="hidden" name="prodNo" value="${product.prodNo }" />
 <input type="hidden" name="prodName" value="${product.prodName }"/>
 <input type="hidden" name="buyer" value="${user.userId }"/>
+<input type="hidden" name="tranCode" value="1"/>
 
 <table width="600" border="0" cellspacing="0" cellpadding="0"	align="center" style="margin-top: 13px;">
 	<tr>
