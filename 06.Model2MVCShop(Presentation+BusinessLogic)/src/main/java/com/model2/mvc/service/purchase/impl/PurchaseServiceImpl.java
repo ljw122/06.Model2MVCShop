@@ -12,16 +12,16 @@ import com.model2.mvc.service.product.ProductDao;
 import com.model2.mvc.service.purchase.PurchaseDao;
 import com.model2.mvc.service.purchase.PurchaseService;
 
-@Service("purchaseServiceImpl")
+@Service("purchaseService")
 public class PurchaseServiceImpl implements PurchaseService {
 	
 	/*Field*/
 	@Autowired
-	@Qualifier("purchaseDaoImpl")
+	@Qualifier("purchaseDao")
 	private PurchaseDao purchaseDao;
 	
 	@Autowired
-	@Qualifier("productDaoImpl")
+	@Qualifier("productDao")
 	private ProductDao productDao;
 	
 	/*Constructor*/

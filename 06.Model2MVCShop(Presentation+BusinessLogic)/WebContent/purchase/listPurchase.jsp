@@ -24,7 +24,7 @@
 
 <div style="width: 98%; margin-left: 10px;">
 
-<form name="detailForm" action="listPurchase.do" method="post">
+<form name="detailForm" action="listPurchase.do?userId=${user.userId }" method="post">
 
 <table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
 	<tr>
@@ -42,7 +42,9 @@
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0"	style="margin-top: 10px;">
 	<tr>
-		<td colspan="11">전체 ${resultPage.totalCount} 건수, 현재 ${resultPage.currentPage} 페이지</td>
+		<td colspan="11">
+			전체 ${resultPage.totalCount} 건수, 현재 ${resultPage.currentPage} 페이지
+		</td>
 	</tr>
 	<tr>
 		<td class="ct_list_b" width="70">No</td>
