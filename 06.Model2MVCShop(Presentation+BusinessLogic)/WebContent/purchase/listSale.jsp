@@ -41,7 +41,10 @@
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0"	style="margin-top: 10px;">
 	<tr>
-		<td colspan="11">전체 ${resultPage.totalCount} 건수, 현재 ${resultPage.currentPage} 페이지</td>
+		<td colspan="11">
+			<input type="hidden" name="userId" value="${purchase.buyer.userId }"/>
+			전체 ${resultPage.totalCount} 건수, 현재 ${resultPage.currentPage} 페이지
+		</td>
 	</tr>
 	<tr>
 		<td class="ct_list_b" width="70">No</td>

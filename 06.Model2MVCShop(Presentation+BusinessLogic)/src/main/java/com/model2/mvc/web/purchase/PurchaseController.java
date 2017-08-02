@@ -96,6 +96,7 @@ public class PurchaseController {
 		
 		search.setSearchKeyword("purchaseList");
 		search.setSearchCondition(user.getUserId());
+		System.out.println("\n\n"+search.getSearchCondition()+"\n\n");
 		
 		this.getList(search, model);
 		
@@ -123,10 +124,12 @@ public class PurchaseController {
 		
 		purchaseService.updatePurchase(updatePurchase);
 		
+		System.out.println("\n\nmenu : "+menu+", userId : "+user.getUserId()+"\n\n");
+		
 		if(menu.equals("manage")){
 			return "forward:listSale.do";
 		}else{
-			return "forward:listPurchase.do";
+			return "forward:listPurchase.do?"+user.getUserId();
 		}
 	}
 	
