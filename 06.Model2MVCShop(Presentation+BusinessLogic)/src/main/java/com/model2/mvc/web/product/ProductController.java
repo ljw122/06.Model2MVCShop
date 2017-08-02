@@ -113,6 +113,8 @@ public class ProductController {
 		if(menu.equals("manage")){
 			search.setStockView(true);
 		}
+		search.setPageSize(pageSize);
+		search.setPageUnit(pageUnit);
 		
 		if(search.getSearchCondition() != null && search.getSearchCondition().equals("2")){
 			try{
