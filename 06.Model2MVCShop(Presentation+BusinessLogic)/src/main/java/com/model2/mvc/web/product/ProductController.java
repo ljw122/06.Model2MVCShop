@@ -32,10 +32,10 @@ public class ProductController {
 	@Qualifier("productService")
 	private ProductService productService;
 	
-	@Value("#{commonProperties['pageUnit'] ?: 5")
+	@Value("#{commonProperties['pageUnit'] ?: 5}")
 	int pageUnit;
 	
-	@Value("#{commonProperties['pageSize'] ?: 3")
+	@Value("#{commonProperties['pageSize'] ?: 3}")
 	int pageSize;
 	
 	/*Constructor*/
