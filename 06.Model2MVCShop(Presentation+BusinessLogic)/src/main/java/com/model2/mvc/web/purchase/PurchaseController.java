@@ -15,7 +15,6 @@ import com.model2.mvc.common.Page;
 import com.model2.mvc.common.Search;
 import com.model2.mvc.service.domain.Product;
 import com.model2.mvc.service.domain.Purchase;
-import com.model2.mvc.service.domain.User;
 import com.model2.mvc.service.product.ProductService;
 import com.model2.mvc.service.purchase.PurchaseService;
 
@@ -53,11 +52,8 @@ public class PurchaseController {
 	}
 	
 	@RequestMapping("addPurchase.do")
-	public String addPurchase(	@ModelAttribute("product") Product product, 
-								@ModelAttribute("purchase") Purchase purchase,
-								@ModelAttribute("user") User user	) throws Exception{
-		purchase.setBuyer(user);
-		purchase.setPurchaseProd(product);
+	public String addPurchase(	@ModelAttribute("purchase") Purchase purchase	) throws Exception{
+
 		purchaseService.addPurchase(purchase);
 		
 		return "forward:purchase/addPurchase.jsp";
@@ -73,16 +69,15 @@ public class PurchaseController {
 	}
 	
 	@RequestMapping("updatePurchaseView.do")
-	public String updatePurchaseView(@ModelAttribute("purchase") Purchase purchase) throws Exception{
+	public String updatePurchaseView(@ModelAttribute("purchase") Purchase purchase, Model model) throws Exception{
 		purchase = purchaseService.getPurchase(purchase);
+		model.addAttribute("purchase", purchase);
 		
 		return "forward:purchase/updatePurchaseView.jsp";
 	}
 	
 	@RequestMapping("updatePurchase.do")
-	public String updatePurchase(	@ModelAttribute("purchase") Purchase purchase,
-									@ModelAttribute("user") User user	) throws Exception{
-		purchase.setBuyer(user);
+	public String updatePurchase(	@ModelAttribute("purchase") Purchase purchase	) throws Exception{
 		
 		purchaseService.updatePurchase(purchase);
 		
@@ -90,12 +85,8 @@ public class PurchaseController {
 	}
 	
 	@RequestMapping("listPurchase.do")
-	public String listPurchase(	@ModelAttribute("user") User user,
-								@ModelAttribute("search") Search search,
+	public String listPurchase(	@ModelAttribute("search") Search search,
 								Model model		) throws Exception{
-		
-		search.setSearchKeyword("purchaseList");
-		search.setSearchCondition(user.getUserId());
 		
 		this.getList(search, model);
 		
@@ -106,8 +97,6 @@ public class PurchaseController {
 	public String listSale(	@ModelAttribute("search") Search search,
 							Model model) throws Exception{
 		
-		search.setSearchKeyword("saleList");
-		
 		this.getList(search, model);
 		
 		return "forward:purchase/listSale.jsp";
@@ -115,8 +104,7 @@ public class PurchaseController {
 
 	@RequestMapping("updateTranCode.do")
 	public String updateTranCode(	@RequestParam("menu") String menu,
-									@ModelAttribute("purchase") Purchase purchase,
-									@ModelAttribute("user") User user	) throws Exception{
+									@ModelAttribute("purchase") Purchase purchase	) throws Exception{
 		
 		Purchase updatePurchase = purchaseService.getPurchase(purchase);
 		updatePurchase.setTranCode(purchase.getTranCode());
@@ -124,9 +112,9 @@ public class PurchaseController {
 		purchaseService.updatePurchase(updatePurchase);
 		
 		if(menu.equals("manage")){
-			return "forward:listSale.do";
+			return "forward:listSale.do?searchKeyword=saleList";
 		}else{
-			return "forward:listPurchase.do?"+user.getUserId();
+			return "forward:listPurchase.do?searchCondition="+purchase.getBuyer().getUserId()+"&searchKeyword=purchaseList";
 		}
 	}
 	

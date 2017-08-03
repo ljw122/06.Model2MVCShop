@@ -24,7 +24,7 @@
 
 <div style="width: 98%; margin-left: 10px;">
 
-<form name="detailForm" action="listPurchase.do&userId=${user.userId}" method="post">
+<form name="detailForm" action="listPurchase.do?searchCondition=${user.userId}&searchKeyword=purchaseList" method="post">
 
 <table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
 	<tr>
@@ -98,7 +98,7 @@
 			<td></td>
 			<td align="left">
 			<c:if test="${purchase.tranCode=='2' }">
-				<a href="updateTranCode.do?tranNo=${purchase.tranNo}&tranCode=3&menu=search&userId=${user.userId}">물건도착</a>
+				<a href="updateTranCode.do?tranNo=${purchase.tranNo}&tranCode=3&menu=search&buyer.userId=${user.userId}">물건도착</a>
 			</c:if>
 			</td>
 		</tr>

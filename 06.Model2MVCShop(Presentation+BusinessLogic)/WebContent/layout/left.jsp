@@ -64,7 +64,7 @@ function history(){
 		</tr>
 		<tr>
 			<td class="Depth03">
-				<a href="../listSale.do" target="rightFrame">판매이력조회</a>
+				<a href="../listSale.do?searchKeyword=saleList" target="rightFrame">판매이력조회</a>
 			</td>
 		</tr>
 		<tr>
@@ -86,7 +86,7 @@ function history(){
 		<c:if test="${!empty user }">
 			<tr>
 				<td class="Depth03">
-					<a href="../listPurchase.do?userId=${user.userId }" target="rightFrame">구매이력조회</a>
+					<a href="../listPurchase.do?searchCondition=${user.userId }&searchKeyword=purchaseList" target="rightFrame">구매이력조회</a>
 				</td>
 			</tr>
 		</c:if>

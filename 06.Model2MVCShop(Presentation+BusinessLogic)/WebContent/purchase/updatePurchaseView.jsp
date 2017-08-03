@@ -39,7 +39,7 @@
 	</tr>
 </table>
 
-<input type="hidden" name="userId" value="${purchase.buyer.userId}"/>
+<input type="hidden" name="buyer.userId" value="${purchase.buyer.userId}"/>
 
 <table width="600" border="0" cellspacing="0" cellpadding="0"	align="center" style="margin-top: 13px;">
 	<tr>

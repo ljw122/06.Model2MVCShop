@@ -47,9 +47,9 @@ function fncAddPurchase() {
 	</tr>
 </table>
 
-<input type="hidden" name="prodNo" value="${product.prodNo }" />
-<input type="hidden" name="prodName" value="${product.prodName }"/>
-<input type="hidden" name="userId" value="${user.userId }"/>
+<input type="hidden" name="purchaseProd.prodNo" value="${product.prodNo }" />
+<input type="hidden" name="purchaseProd.prodName" value="${product.prodName }"/>
+<input type="hidden" name="buyer.userId" value="${user.userId }"/>
 <input type="hidden" name="tranCode" value="1"/>
 
 <table width="600" border="0" cellspacing="0" cellpadding="0"	align="center" style="margin-top: 13px;">

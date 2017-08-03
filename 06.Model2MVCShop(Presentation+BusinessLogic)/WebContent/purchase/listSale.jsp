@@ -23,7 +23,7 @@
 
 <div style="width: 98%; margin-left: 10px;">
 
-<form name="detailForm" action="listSale.do" method="post">
+<form name="detailForm" action="listSale.do?searchKeyword=saleList" method="post">
 
 <table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
 	<tr>
@@ -42,7 +42,6 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="0"	style="margin-top: 10px;">
 	<tr>
 		<td colspan="11">
-			<input type="hidden" name="userId" value="${purchase.buyer.userId }"/>
 			전체 ${resultPage.totalCount} 건수, 현재 ${resultPage.currentPage} 페이지
 		</td>
 	</tr>
